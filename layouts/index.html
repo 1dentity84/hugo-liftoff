@@ -15,14 +15,14 @@
         {{ with .Params.secondary_cta_page }}
           {{ $s_cta = . }}
         {{ end }}
-        <a class="btn-primary"
-           href="{{ with $p_cta }}{{ . | relURL }}{{ else }}{{ "about" | relURL }}{{ end }}">
+        <!-- <a class="btn-primary"
+           href="{{ with $p_cta }}{{ . | relLangURL }}{{ else }}{{ "about" | relLangURL }}{{ end }}">
            {{ if $p_cta }}{{ with .Site.GetPage $p_cta }}{{ .LinkTitle }}{{ end }}{{ else }}About{{ end }}
-        </a>
-        <a class="btn-secondary"
+        </a> -->
+        <!-- <a class="btn-secondary"
            href="{{ with $s_cta }}{{ . | relURL }}{{ else }}{{ "projects" | relURL }}{{ end }}">
            {{ if $s_cta }}{{ with .Site.GetPage $s_cta }}{{ .LinkTitle }}{{ end }}{{ else }}Projects{{ end }}
-        </a>
+        </a> -->
       </div>
     </div>
     <div class="hero-owner">
@@ -41,6 +41,7 @@
             src="{{ $image.RelPermalink }}"
             width="{{- $image.Width -}}" height="{{- $image.Height -}}"
             alt="Headshot or avatar belonging to the website owner"/>
+            <b>PLCT Lab founder- Wei Wu</b>
       {{ if eq .Site.Params.home_hero_socials true }}
         {{ partial "general/social-links.html" . }}
       {{ end }}

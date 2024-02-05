@@ -54,5 +54,14 @@
       </a>
     </li>
     {{ end }}
+
+    <!-- Bilibili -->
+    {{ with .Site.Params.social.links.bilibili }}
+    <li>
+      <a href="https://space.bilibili.com/{{ . }}" target="_blank" class="social-btn bilibili">
+        {{ partial "svg/bilibili.svg" }}
+      </a>
+    </li>
+    {{ end }}  
   </ul>
 </div>

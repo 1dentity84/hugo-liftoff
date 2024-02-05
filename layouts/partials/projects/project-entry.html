@@ -1,5 +1,5 @@
 <div class="project-entry">
-  <div class="project-entry-img">
+  <!-- <div class="project-entry-img">
     {{ partial "general/feature-image.html" . }}
     {{ with .Param "project types" }}
     <div class="project-entry-type">
@@ -8,10 +8,13 @@
       {{ end }}
     </div>
     {{ end }}
-  </div>
+  </div> -->
   <div class="project-entry-info">
     <h3 class="project-entry-title">
-      <a href="{{ .Permalink }}">{{ .Title }}</a>
+      <!-- <b>{{ .Title }}</b> -->
+      <b>
+        <a href="{{ .Params.live_url }}">{{ .Title }}</a>
+      </b>
       <sup>{{ partial "general/label-drafts.html" . }}</sup>
     </h3>
     <div class="project-list-meta">
@@ -28,15 +31,15 @@
         {{- .Description -}}
       {{- end -}}
     </p>
-    {{ if or (.Params.live_url) (.Params.source_url) }}
+    <!-- {{ if or (.Params.live_url) (.Params.source_url) }}
       <div class="btn-group">
         {{ with .Params.live_url }}
-          <a class="btn-primary" href="{{ . }}" target="_blank">Live</a>
+          <a class="btn-primary" href="{{ . }}" target="_blank">Source</a>
         {{ end }}
         {{ with .Params.source_url }}
           <a class="btn-secondary" href="{{ . }}" target="_blank">Source</a>
         {{ end }}
       </div>
-    {{ end }}
+    {{ end }} -->
   </div>
 </div>

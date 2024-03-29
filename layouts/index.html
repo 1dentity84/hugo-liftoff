@@ -41,7 +41,7 @@
             src="{{ $image.RelPermalink }}"
             width="{{- $image.Width -}}" height="{{- $image.Height -}}"
             alt="Headshot or avatar belonging to the website owner"/>
-            <b>PLCT Lab founder- Wei Wu</b>
+            <b>{{T "founder"}}</b>
       {{ if eq .Site.Params.home_hero_socials true }}
         {{ partial "general/social-links.html" . }}
       {{ end }}

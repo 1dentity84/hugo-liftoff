@@ -14,20 +14,21 @@
 <!-- SEO title from config or front matter -->
 <!-- Site title gets added EXCEPT on single post and project pages -->
 <title>
-  {{- $paginator := .Paginate .RegularPagesRecursive }}
+  {{- if and .Page.IsNode .Page.Paginator -}}
+    {{- $paginator := .Paginate .RegularPagesRecursive }}
+    {{- with $paginator -}}
+      {{ if and (gt $paginator.TotalPages 1) (gt $paginator.PageNumber 1) }}
+          | Page {{ $paginator.PageNumber }}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
   {{- with .Params.seo_title -}}
     {{- . -}}
   {{- else -}}
     {{- .Title -}}
   {{- end -}}
-  {{- with $paginator -}}
-    {{ if and (gt $paginator.TotalPages 1) (gt $paginator.PageNumber 1) }}
-        | Page {{ $paginator.PageNumber }}
-    {{- end -}}
-  {{- end -}}
   {{ if (or (and (ne .Type "posts") (ne .Type "projects") (not .IsHome)) (and (not .IsPage) (not .IsHome))) }} | {{ .Site.Title -}}{{ end -}}
 </title>
-
 <!-- Author from config -->
 {{ with .Params.author -}}
   <meta name="author" content="{{ . }}">

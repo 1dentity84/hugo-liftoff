@@ -38,6 +38,7 @@
         {{ $image = $image | images.Filter (images.Grayscale)  }}
       {{ end }}
       <img class="hero-avatar"
+            decoding="async"
             src="{{ $image.RelPermalink }}"
             width="{{- $image.Width -}}" height="{{- $image.Height -}}"
             alt="Headshot or avatar belonging to the website owner"/>

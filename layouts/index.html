@@ -1,12 +1,12 @@
 {{ define "main" }}
 <div class="container">
-  <section class="section hero">
-    <div class="hero-info">
+  <!-- <section class="section hero"> -->
+    <div class="hero-info" style="text-align:justify">
       <h1 class="hero-title">{{ .Title }}</h1>
       {{ with .Params.subtitle }}
         <p class="hero-subtitle">{{. | markdownify}}</p>
       {{ end }}
-      <div class="btn-group">
+      <!-- <div class="btn-group">
         {{ $p_cta := "" }}
         {{ with .Params.primary_cta_page }}
           {{ $p_cta = . }}
@@ -15,17 +15,17 @@
         {{ with .Params.secondary_cta_page }}
           {{ $s_cta = . }}
         {{ end }}
-        <!-- <a class="btn-primary"
-           href="{{ with $p_cta }}{{ . | relLangURL }}{{ else }}{{ "about" | relLangURL }}{{ end }}">
+        <a class="btn-primary"
+           href="{{ with $p_cta }}{{ . | relURL }}{{ else }}{{ "about" | relURL }}{{ end }}">
            {{ if $p_cta }}{{ with .Site.GetPage $p_cta }}{{ .LinkTitle }}{{ end }}{{ else }}About{{ end }}
-        </a> -->
-        <!-- <a class="btn-secondary"
+        </a>
+        <a class="btn-secondary"
            href="{{ with $s_cta }}{{ . | relURL }}{{ else }}{{ "projects" | relURL }}{{ end }}">
            {{ if $s_cta }}{{ with .Site.GetPage $s_cta }}{{ .LinkTitle }}{{ end }}{{ else }}Projects{{ end }}
-        </a> -->
-      </div>
+        </a>
+      </div> -->
     </div>
-    <div class="hero-owner">
+    <!-- <div class="hero-owner">
       {{ $avatar := .Site.Params.avatar }}
       {{ $default_image := "images/default.png" }}
       {{ $image := "" }}
@@ -45,8 +45,8 @@
       {{ if eq .Site.Params.home_hero_socials true }}
         {{ partial "general/social-links.html" . }}
       {{ end }}
-    </div>
-  </section>
+    </div> -->
+  <!-- </section> -->
   {{/*  Shortcodes from page content  */}}
   {{ .Content }}
 </div>

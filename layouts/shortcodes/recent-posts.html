@@ -1,4 +1,4 @@
-<section class="section">
+<!-- <div class="card">
   <div class="home-title-dropdown">
     <h2 class="home-section-posts-title">
       {{- with $.Page.Params.posts_section_heading -}}
@@ -22,4 +22,82 @@
     {{ partial "general/fallback-text.html" . }}
   {{ end }}
   <a class="btn-secondary see-more" href="news">{{ T "recentnews" }}</a>
-</section>
+  </div> -->
+
+<style>
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .card h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .read-more-button {
+    display: inline-flex;
+    align-items: center;
+    font-weight: bold;
+    color: #007acc;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    font-size: 1rem;
+  }
+
+  .read-more-button:hover svg {
+    transform: translateX(4px);
+  }
+
+  .read-more-button svg {
+    margin-left: 0.5rem;
+    width: 1em;
+    height: 1em;
+    transition: transform 0.2s ease;
+  }
+</style>
+
+{{ $total := 3 }}
+{{ $news := where site.RegularPages "Section" "news" | first (sub $total 1) }}
+
+<div class="card-grid">
+  {{ range $news }}
+  <a href="{{ .RelPermalink }}" class="card">
+    <h3>{{ .Title }}</h3>
+  </a>
+  {{ end }}
+
+  <!-- 最后一张卡片是“阅读更多” -->
+  <a href="news" class="card">
+    <span class="read-more-button">
+      {{ T "recentnews" }}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </span>
+  </a>
+</div>

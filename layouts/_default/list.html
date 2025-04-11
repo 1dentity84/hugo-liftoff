@@ -1,29 +1,29 @@
 {{ define "main" -}}
-<div class="container">
+<div class="container" style="padding: 20px;">
   <section class="page-header">
     <h1 class="page-header-title">{{ .Title }}</h1>
     <p class="page-header-desc">
       {{- with .Params.Summary -}}
-        {{- . -}}
+      {{- . -}}
       {{- else -}}
-        {{- with .Description -}}
-          {{- . -}}
-        {{- else -}}
-          {{- if eq .Data.Plural "series" -}}
-            Posts in the {{ .Title }} series.
-          {{- else -}}
-            Posts about {{ .Title }}.
-          {{- end -}}
-        {{- end -}}
+      {{- with .Description -}}
+      {{- . -}}
+      {{- else -}}
+      {{- if eq .Data.Plural "series" -}}
+      Posts in the {{ .Title }} series.
+      {{- else -}}
+      Posts about {{ .Title }}.
+      {{- end -}}
+      {{- end -}}
       {{- end -}}
     </p>
   </section>
   <section>
     {{ range (.Paginate .RegularPagesRecursive).Pages }}
-      {{ partial "posts/post-entry.html" . }}
-      <div class="post-entry-divider"></div>
+    {{ partial "posts/post-entry.html" . }}
+    <div class="post-entry-divider"></div>
     {{ else }}
-      {{ partial "general/fallback-text.html" . }}
+    {{ partial "general/fallback-text.html" . }}
     {{ end }}
     {{ template "_internal/pagination.html" . }}
   </section>

@@ -1,53 +1,98 @@
 {{ define "main" }}
-<div class="container">
-  <!-- <section class="section hero"> -->
-    <div class="hero-info" style="text-align:justify">
-      <h1 class="hero-title">{{ .Title }}</h1>
-      {{ with .Params.subtitle }}
-        <p class="hero-subtitle">{{. | markdownify}}</p>
-      {{ end }}
-      <!-- <div class="btn-group">
-        {{ $p_cta := "" }}
-        {{ with .Params.primary_cta_page }}
-          {{ $p_cta = . }}
-        {{ end }}
-        {{ $s_cta := "" }}
-        {{ with .Params.secondary_cta_page }}
-          {{ $s_cta = . }}
-        {{ end }}
-        <a class="btn-primary"
-           href="{{ with $p_cta }}{{ . | relURL }}{{ else }}{{ "about" | relURL }}{{ end }}">
-           {{ if $p_cta }}{{ with .Site.GetPage $p_cta }}{{ .LinkTitle }}{{ end }}{{ else }}About{{ end }}
-        </a>
-        <a class="btn-secondary"
-           href="{{ with $s_cta }}{{ . | relURL }}{{ else }}{{ "projects" | relURL }}{{ end }}">
-           {{ if $s_cta }}{{ with .Site.GetPage $s_cta }}{{ .LinkTitle }}{{ end }}{{ else }}Projects{{ end }}
-        </a>
-      </div> -->
+
+
+<!-- 第1个全宽容器 -->
+<section class="full-width-container section-1">
+  <div class="content-wrapper">
+    <h1 class="section-title">{{ .Params.section1_title }}</h1>
+    {{ with .Params.subtitle1 }}<p class="section-subtitle">{{ . | markdownify }}</p>{{ end }}
+
+    <!-- 保留原有的GitHub按钮和新闻网格 -->
+    <a href="https://github.com/{{ .Site.Params.social.links.github }}" class="github-button" target="_blank"
+      rel="noopener noreferrer">
+      <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+      </svg>
+      {{ T "gitbutton" }}
+    </a>
+
+    <div class="news-grid-container">
+      {{ partial "posts/news-grid" (dict
+            "section" "news"
+            "total" 3
+            "readMoreLink" "/news"
+          )}}
     </div>
-    <!-- <div class="hero-owner">
-      {{ $avatar := .Site.Params.avatar }}
-      {{ $default_image := "images/default.png" }}
-      {{ $image := "" }}
-      {{ with $avatar }}
-        {{ $image = resources.Get $avatar }}
-      {{ else }}
-        {{ $image = resources.Get $default_image }}
-      {{ end }}
-      {{ if eq .Site.Params.grayscale_avatar true }}
-        {{ $image = $image | images.Filter (images.Grayscale)  }}
-      {{ end }}
-      <img class="hero-avatar"
-            src="{{ $image.RelPermalink }}"
-            width="{{- $image.Width -}}" height="{{- $image.Height -}}"
-            alt="Headshot or avatar belonging to the website owner"/>
-            <b>{{T "founder"}}</b>
-      {{ if eq .Site.Params.home_hero_socials true }}
-        {{ partial "general/social-links.html" . }}
-      {{ end }}
-    </div> -->
-  <!-- </section> -->
-  {{/*  Shortcodes from page content  */}}
-  {{ .Content }}
-</div>
+  </div>
+</section>
+
+<!-- 间隙1 -->
+<div class="section-gap"></div>
+
+<!-- 第2个全宽容器 -->
+<section class="full-width-container section-2">
+  <div class="content-wrapper">
+    <h2 class="section2-title">{{ .Params.section2_title }}</h2>
+    {{ with .Params.subtitle2 }}<p class="section2-subtitle">{{ . | markdownify }}</p>{{ end }}
+    <a href="https://ruyisdk.org" class="github-button" target="_blank" rel="noopener noreferrer">
+      <img src="/ruyi-logo.svg" style="margin-right: 12px;" alt="RuyiSDK Logo" width="20" height="20">
+      {{ T "gitbutton" }}
+    </a>
+  </div>
+</section>
+
+<!-- 间隙2 -->
+<div class="section-gap"></div>
+
+<!-- 第3个全宽容器 -->
+<section class="full-width-container section-3">
+  <div class="content-wrapper">
+    <h2 class="section-title">{{ .Params.section3_title }}</h2>
+    {{ with .Params.subtitle3 }}<p class="section-subtitle">{{ . | markdownify }}</p>{{ end }}
+    <a href="https://github.com/plctlab/PLCT-Weekly" class="github-button" target="_blank" rel="noopener noreferrer">
+      <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+      </svg>
+      {{ T "gitbutton" }}
+    </a>
+  </div>
+</section>
+
+<!-- 间隙3 -->
+<div class="section-gap"></div>
+
+<!-- 第4个全宽容器（保留原有功能） -->
+<section class="full-width-container section-4">
+  <div class="content-wrapper">
+    <h2 class="section-title">{{ .Params.section4_title }}</h2>
+    {{ with .Params.subtitle4 }}<p class="section-subtitle">{{ . | markdownify }}</p>{{ end }}
+    <a href="https://github.com/plctlab/weloveinterns" class="github-button" target="_blank" rel="noopener noreferrer">
+      <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+      </svg>
+      {{ T "gitbutton" }}
+    </a>
+
+
+  </div>
+</section>
+
+<!-- 间隙4 -->
+<div class="section-gap"></div>
+
+<!-- 第5个全宽容器（保留原有功能） -->
+<section class="full-width-container section-5">
+  <div class="content-wrapper">
+    <h2 class="section-title">{{ .Params.section5_title }}</h2>
+    {{ with .Params.subtitle5 }}<p class="section-subtitle">{{ . | markdownify }}</p>{{ end }}
+    <a href="https://riscv.org/" class="github-button" target="_blank" rel="noopener noreferrer">
+      <img src="/globe-solid.svg" style="margin-right: 12px;" alt="RuyiSDK Logo" width="20" height="20">
+      {{ T "gitbutton" }}
+    </a>
+
+  </div>
+</section>
 {{ end }}

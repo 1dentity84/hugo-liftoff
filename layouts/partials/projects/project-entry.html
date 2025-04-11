@@ -20,26 +20,26 @@
     <div class="project-list-meta">
       {{ with .Params.techstack }}
       {{ range . }}
-        <span>{{ . }}</span>
+      <span>{{ . }}</span>
       {{ end }}
       {{ end }}
     </div>
     <p class="project-list-summary">
       {{- with .Params.Summary -}}
-        {{ . }}
+      {{ . }}
       {{- else -}}
-        {{- .Description -}}
+      {{- .Description -}}
       {{- end -}}
     </p>
-    <!-- {{ if or (.Params.live_url) (.Params.source_url) }}
-      <div class="btn-group">
-        {{ with .Params.live_url }}
-          <a class="btn-primary" href="{{ . }}" target="_blank">Source</a>
-        {{ end }}
-        {{ with .Params.source_url }}
-          <a class="btn-secondary" href="{{ . }}" target="_blank">Source</a>
-        {{ end }}
-      </div>
-    {{ end }} -->
+    {{ if or (.Params.live_url) (.Params.source_url) }}
+    <div class="btn-group">
+      {{ with .Params.live_url }}
+      <a class="btn-primary" href="{{ . }}" target="_blank">Source</a>
+      {{ end }}
+      {{ with .Params.source_url }}
+      <a class="btn-secondary" href="{{ . }}" target="_blank">Source</a>
+      {{ end }}
+    </div>
+    {{ end }}
   </div>
 </div>

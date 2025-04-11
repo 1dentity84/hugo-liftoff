@@ -1,0 +1,92 @@
+{{/*
+参数说明：
+- section: 要显示的内容分区（默认为"news"）
+- total: 要显示的卡片总数（默认为3）
+- readMoreText: "阅读更多"的文本（默认为i18n的"recentnews"）
+- readMoreLink: "阅读更多"的链接（默认为section名称）
+*/}}
+
+{{ $section := .section | default "news" }}
+{{ $total := .total | default 3 }}
+{{ $readMoreText := .readMoreText | default (T "recentnews") }}
+{{ $readMoreLink := .readMoreLink | default $section }}
+
+<style>
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .card {
+        background: #f9f9f9;
+        border: 1px solid #eee;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100px;
+
+    }
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: #000000;
+        text-align: center;
+        font-weight: normal;
+    }
+
+    .read-more-button {
+        display: inline-flex;
+        align-items: center;
+        font-weight: bold;
+        color: #4a99e1;
+        text-decoration: none;
+        transition: transform 0.2s ease;
+        font-size: 1.5rem;
+    }
+
+    .read-more-button:hover svg {
+        transform: translateX(4px);
+    }
+
+    .read-more-button svg {
+        margin-left: 0.5rem;
+        width: 1em;
+        height: 1em;
+        transition: transform 0.2s ease;
+    }
+</style>
+
+{{ $pages := where site.RegularPages "Section" $section | first (sub $total 1) }}
+
+<div class="card-grid">
+    {{ range $pages }}
+    <a href="{{ .RelPermalink }}" class="card">
+        <h3>{{ .Title }}</h3>
+    </a>
+    {{ end }}
+
+    <!-- 最后一张卡片是"阅读更多" -->
+    <a href="news" class="card">
+        <span class="read-more-button">
+            {{ $readMoreText }}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+        </span>
+    </a>
+</div>
